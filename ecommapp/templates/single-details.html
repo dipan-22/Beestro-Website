@@ -1,0 +1,64 @@
+{% extends "default.html" %} 
+{% load static %}
+ {% block 'slider' %}
+ <section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">Product Details</h2>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <img
+        src="{{item_records.product_image_set.all.0.image.url}}"
+        style="height: 300px; width: 300px"
+        class="img-responsive"
+      />
+      <br />
+      {% for item_pic in item_records.product_image_set.all %}
+      <div style="height: 50px; width: 50px; display: inline-block">
+        <img src="{{item_pic.image.url}}" style="height: 50px; width: 50px" />
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-lg-6">
+      <h1>{{item_records.name}}</h1>
+      <h1>Rs.{{item_records.price}}/-</h1>
+      <p>{{item_records.long_description}}</p>
+      <form action="/cart" method="post">
+        {% csrf_token %}
+        <center>
+          Quantity:
+          <select name="quantity">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+        </center>
+        <br />
+        <input type="hidden" name="slug" value="{{item_records.slug}}" />
+        <!-- type hidden korle dekhabe na 			<br><br> -->
+        <button type="submit" name="test" value="buy" class="btn">
+          <span class="glyphicon glyphicon-flash">Buy Now</span>
+        </button>
+        <button type="submit" name="test" value="cart" class="btn">
+          <span class="glyphicon glyphicon-cart">Add to Cart</span>
+        </button>
+        <!-- glyphicon kaj korche na  -->
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

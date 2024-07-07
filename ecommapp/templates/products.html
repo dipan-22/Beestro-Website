@@ -1,0 +1,118 @@
+{% extends "default.html" %} {% load static %} {% block 'slider' %}
+
+<section id="inner-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="pageTitle">Gallery</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--gallery wrapper-->
+<section id="content">
+  <div class="container content">
+    <!-- Service Blcoks -->
+    <div class="row service-v1 margin-bottom-40">
+      {% for item in records %}
+      <div class="col-md-4 md-margin-bottom-40">
+        {% for item_pic in item.product_image_set.all %}<!--to take all product images through for loop-->
+        <div style="height: 50px; width: 50px; display: inline-block">
+          <img src="{{item_pic.image.url}}" />
+          <!-- class="img-responsive" -->
+        </div>
+        {% endfor %}
+        <img
+          src="{{item.product_image_set.all.0.image.url}}"
+          style="height: 350px; width: 350px"
+          alt=""
+        />
+        <h2>{{item.name}}</h2>
+        <p>{{item.short_description}}</p>
+        <!-- only 0 index product image will be shown withname and sdescrip-->
+        <center>
+          <a href="{% url 'single-details' item.name %}" class="btn"
+            >Show Details</a
+          >
+        </center>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- End Service Blcoks -->
+
+    <hr class="margin-bottom-50" />
+
+    <!-- Info Blcoks -->
+    <div class="row">
+      <div class="col-sm-4 info-blocks">
+        <i class="icon-info-blocks fa fa-bell-o"></i>
+        <div class="info-blocks-in">
+          <h3>Awesome Design</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            quae porro consequatur aliquam, incidunt
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 info-blocks">
+        <i class="icon-info-blocks fa fa-hdd-o"></i>
+        <div class="info-blocks-in">
+          <h3>FontAwesome</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            quae porro consequatur aliquam, incidunt
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 info-blocks">
+        <i class="icon-info-blocks fa fa-lightbulb-o"></i>
+        <div class="info-blocks-in">
+          <h3>Bootstrap</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            quae porro consequatur aliquam, incidunt
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End Info Blcoks -->
+
+    <!-- Info Blcoks -->
+    <div class="row">
+      <div class="col-sm-4 info-blocks">
+        <i class="icon-info-blocks fa fa-code"></i>
+        <div class="info-blocks-in">
+          <h3>SEO Ready</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            quae porro consequatur aliquam, incidunt
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 info-blocks">
+        <i class="icon-info-blocks fa fa-compress"></i>
+        <div class="info-blocks-in">
+          <h3>Fully Responsive</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            quae porro consequatur aliquam, incidunt
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 info-blocks">
+        <i class="icon-info-blocks fa fa-html5"></i>
+        <div class="info-blocks-in">
+          <h3>CSS3 + HTML5</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            quae porro consequatur aliquam, incidunt
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End Info Blcoks -->
+  </div>
+</section>
+
+{% endblock %}
